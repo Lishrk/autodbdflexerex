@@ -10,6 +10,8 @@ namespace AutoDbdFlexerEx.ViewModel
 {
     public class ApplicationViewModel
     {
+        public ViewSettings ViewSettings { get; }
+
         public Wiggle Wiggle { get; private set; }
         public TBag TBag { get; private set; }
         public HookResistance HookResistance { get; private set; }
@@ -23,7 +25,7 @@ namespace AutoDbdFlexerEx.ViewModel
             {
                 Load();
             }
-            catch (Exception e)
+            catch
             {
                 Wiggle = new Wiggle();
                 TBag = new TBag() { Cooldown = 100, Press = 100 };
@@ -33,6 +35,8 @@ namespace AutoDbdFlexerEx.ViewModel
             AllActions = typeof(ApplicationViewModel).GetProperties()
                 .Where(p => p.PropertyType.BaseType == typeof(FlexAction))
                 .Select(p => (FlexAction)p.GetValue(this));
+
+            ViewSettings = ViewSettings.Load();
 
             keyboardHook = new KeyboardHook();
             keyboardHook.OnKeyDown += (s, e) =>
@@ -47,7 +51,11 @@ namespace AutoDbdFlexerEx.ViewModel
             };
             keyboardHook.Hook();
 
-            App.Current.Exit += (s, e) => Save();
+            App.Current.Exit += (s, e) =>
+            {
+                Save();
+                ViewSettings.Save();
+            };
         }
 
         private void Load()

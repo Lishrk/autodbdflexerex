@@ -34,5 +34,17 @@ namespace AutoDbdFlexerEx.Properties {
                 this["Data"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ViewSettings {
+            get {
+                return ((string)(this["ViewSettings"]));
+            }
+            set {
+                this["ViewSettings"] = value;
+            }
+        }
     }
 }

@@ -1,20 +1,6 @@
-﻿using AutoDbdFlexerEx.Model;
-using AutoDbdFlexerEx.ViewModel;
+﻿using AutoDbdFlexerEx.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoDbdFlexerEx.View
 {
@@ -27,7 +13,7 @@ namespace AutoDbdFlexerEx.View
         {
             InitializeComponent();
 
-            DataContext = viewModel = new ViewModel.ApplicationViewModel();
+            DataContext = viewModel = new ApplicationViewModel();
 
             status = new StatusWindow(viewModel);
             status.Show();
@@ -37,6 +23,17 @@ namespace AutoDbdFlexerEx.View
         {
             base.OnClosed(e);
             status.Close();
+        }
+
+        private void ShowAbout(object sender, RoutedEventArgs e)
+        {
+            About.ShowAbout();
+        }
+
+        private void OpenSettings(object sender, RoutedEventArgs e)
+        {
+            Settings settings = new Settings(viewModel);
+            settings.ShowDialog();
         }
     }
 }

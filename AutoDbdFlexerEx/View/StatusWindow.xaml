@@ -4,15 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoDbdFlexerEx.View"
+        xmlns:viewModel="clr-namespace:AutoDbdFlexerEx.ViewModel"
         mc:Ignorable="d"
         AllowsTransparency="True"
         Background="Transparent"
         WindowStyle="None"
         Topmost="True"
         ResizeMode="NoResize"
+        Focusable="False"
         SizeToContent="WidthAndHeight"
-        Title="StatusWindow" Height="100" Width="400">
-
+        IsHitTestVisible="False"
+        Title="Активные макросы" Height="100" Width="400">
+    <Window.Resources >
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
+    <Window.Visibility>
+        <Binding Path="ViewSettings.ShowStatusWindow" Mode="TwoWay" Converter="{StaticResource BoolToVisibilityConverter}"/>
+    </Window.Visibility>
     <ItemsControl Background="Transparent" ItemsSource="{Binding Path=AllActions}" BorderThickness="0" Margin="10">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -21,7 +29,7 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <TextBlock FontSize="20" Foreground="LawnGreen" TextAlignment="Right" Margin="10, 5" FontWeight="Bold">
+                <TextBlock FontSize="20" Foreground="LawnGreen" Margin="10, 5" FontWeight="Bold">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} - {1}">
                             <Binding Path="Name"/>
@@ -31,11 +39,23 @@
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=Active}" Value="False">
+                                <DataTrigger Binding="{Binding Active}" Value="False">
                                     <Setter Property="Visibility" Value="Collapsed"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Path=Active}" Value="True">
+                                <DataTrigger Binding="{Binding Active}" Value="True">
                                     <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ViewSettings.StatusWindowPosition}" Value="{x:Static viewModel:ScreenCorners.LeftTop}">
+                                    <Setter Property="TextAlignment" Value="Left"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ViewSettings.StatusWindowPosition}" Value="{x:Static viewModel:ScreenCorners.RightTop}">
+                                    <Setter Property="TextAlignment" Value="Right"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ViewSettings.StatusWindowPosition}" Value="{x:Static viewModel:ScreenCorners.LeftBottom}">
+                                    <Setter Property="TextAlignment" Value="Left"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ViewSettings.StatusWindowPosition}" Value="{x:Static viewModel:ScreenCorners.RightBottom}">
+                                    <Setter Property="TextAlignment" Value="Right"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

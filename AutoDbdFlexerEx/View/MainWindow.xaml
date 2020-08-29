@@ -22,8 +22,19 @@
         </Style>
     </Window.Resources>
     <ScrollViewer>
-        <Grid Margin="10">
-            <StackPanel>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="30*"/>
+            </Grid.RowDefinitions>
+            <Menu Grid.Row="0" Grid.Column="0" Height="20">
+                <MenuItem Header="Настройки..." Click="OpenSettings"/>
+                <MenuItem Header="О программе..." Click="ShowAbout"/>
+            </Menu>
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
                 <Border x:Name="Border" SnapsToDevicePixels="True" BorderBrush="Black" BorderThickness="1" Margin="0, 0, 0, 10">
                     <StackPanel>
                         <TextBlock Text="{Binding Path=Wiggle.Name}"/>
