@@ -9,11 +9,13 @@ namespace AutoDbdFlexerEx.View
         {
             InitializeComponent();
         }
+
         public static void ShowAbout()
         {
             About about = new About();
             about.ShowDialog();
         }
+
         private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             Process.Start(e.Uri.AbsoluteUri);

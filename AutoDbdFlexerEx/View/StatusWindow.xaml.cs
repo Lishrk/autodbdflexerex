@@ -1,7 +1,7 @@
 ﻿using AutoDbdFlexerEx.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Forms;
-using System.Windows.Media;
 
 namespace AutoDbdFlexerEx.View
 {
@@ -23,12 +23,19 @@ namespace AutoDbdFlexerEx.View
                 }
             };
         }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            App.Current.Shutdown();
+        }
+
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
 
             UpdatePosition();
         }
+
         private void UpdatePosition()
         {
             switch (viewModel.ViewSettings.StatusWindowPosition)

@@ -6,7 +6,6 @@ namespace AutoDbdFlexerEx.View
 {
     public partial class MainWindow : Window
     {
-        private readonly StatusWindow status;
         private readonly ApplicationViewModel viewModel;
 
         public MainWindow()
@@ -15,14 +14,13 @@ namespace AutoDbdFlexerEx.View
 
             DataContext = viewModel = new ApplicationViewModel();
 
-            status = new StatusWindow(viewModel);
-            status.Show();
+            new StatusWindow(viewModel).Show();
         }
 
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            status.Close();
+            App.Current.Shutdown();
         }
 
         private void ShowAbout(object sender, RoutedEventArgs e)
