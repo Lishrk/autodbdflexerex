@@ -23,6 +23,7 @@ namespace AutoDbdFlexerEx.View
                 }
             };
         }
+
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);

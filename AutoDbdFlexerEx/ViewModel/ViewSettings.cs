@@ -10,6 +10,7 @@ namespace AutoDbdFlexerEx.ViewModel
         private bool _ShowStatusWindow;
         private ScreenCorners _StatusWindowPosition;
         private Color _StatusWindowTextColor;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public bool ShowStatusWindow
         {
@@ -36,21 +37,23 @@ namespace AutoDbdFlexerEx.ViewModel
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string property = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
+
         private ViewSettings()
         {
             ShowStatusWindow = true;
             StatusWindowPosition = ScreenCorners.RightBottom;
         }
+
         public void Save()
         {
             Properties.Settings.Default.ViewSettings = JsonConvert.SerializeObject(this);
             Properties.Settings.Default.Save();
         }
+
         public static ViewSettings Load()
         {
             ViewSettings settings;
