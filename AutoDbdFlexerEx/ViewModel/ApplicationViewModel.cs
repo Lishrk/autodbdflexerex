@@ -1,9 +1,9 @@
 ﻿using AutoDbdFlexerEx.Model;
 using AutoDbdFlexerEx.Model.Actions;
-using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AutoDbdFlexerEx.ViewModel
 {
@@ -37,7 +37,7 @@ namespace AutoDbdFlexerEx.ViewModel
                 .Select(p => (FlexAction)p.GetValue(this));
 
             keyboardHook = new KeyboardHook();
-            keyboardHook.OnKeyDown += (s, e) =>
+            keyboardHook.KeyDown += (s, e) =>
             {
                 foreach (var action in AllActions)
                 {
@@ -61,7 +61,11 @@ namespace AutoDbdFlexerEx.ViewModel
             var enumerator = typeof(ApplicationViewModel).GetProperties().Where(p => p.PropertyType.BaseType == typeof(FlexAction)).GetEnumerator();
             foreach (var savedAction in Settings.Data.GetValue("actions"))
             {
-                if (!enumerator.MoveNext()) throw new Exception();
+                if (!enumerator.MoveNext())
+                {
+                    throw new Exception();
+                }
+
                 enumerator.Current.SetValue(this, savedAction.ToObject(enumerator.Current.PropertyType));
             }
         }

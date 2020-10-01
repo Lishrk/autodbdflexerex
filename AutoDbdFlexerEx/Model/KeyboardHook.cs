@@ -7,11 +7,11 @@ namespace AutoDbdFlexerEx.Model
     public class KeyboardHook
     {
         [DllImport("user32.dll")]
-        static extern int CallNextHookEx(IntPtr hhk, int code, int wParam, ref keyBoardHookStruct lParam);
+        private static extern int CallNextHookEx(IntPtr hhk, int code, int wParam, ref keyBoardHookStruct lParam);
         [DllImport("user32.dll")]
-        static extern IntPtr SetWindowsHookEx(int idHook, LLKeyboardHook callback, IntPtr hInstance, uint theardID);
+        private static extern IntPtr SetWindowsHookEx(int idHook, LLKeyboardHook callback, IntPtr hInstance, uint theardID);
         [DllImport("user32.dll")]
-        static extern bool UnhookWindowsHookEx(IntPtr hInstance);
+        private static extern bool UnhookWindowsHookEx(IntPtr hInstance);
         [DllImport("kernel32.dll")]
         private static extern IntPtr LoadLibrary(string lpFileName);
 
@@ -36,15 +36,18 @@ namespace AutoDbdFlexerEx.Model
 
         private IntPtr hook = IntPtr.Zero;
 
-        public event KeyEventHandler OnKeyDown;
-        public event KeyEventHandler OnKeyUp;
+        public event KeyEventHandler KeyDown;
+        public event KeyEventHandler KeyUp;
 
         public KeyboardHook()
         {
             llkh = new LLKeyboardHook(HookProc);
         }
+
         ~KeyboardHook()
-        { Unhook(); }
+        {
+            Unhook();
+        }
 
         public void Hook()
         {
@@ -63,12 +66,19 @@ namespace AutoDbdFlexerEx.Model
             {
                 Keys key = (Keys)lParam.vkCode;
                 KeyEventArgs kArg = new KeyEventArgs(key);
-                if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (OnKeyDown != null))
-                    OnKeyDown(this, kArg);
-                else if ((wParam == WM_KEYUP || wParam == WM_SYSKEYUP) && (OnKeyUp != null))
-                    OnKeyUp(this, kArg);
+                if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyDown != null))
+                {
+                    KeyDown(this, kArg);
+                }
+                else if ((wParam == WM_KEYUP || wParam == WM_SYSKEYUP) && (KeyUp != null))
+                {
+                    KeyUp(this, kArg);
+                }
+
                 if (kArg.Handled)
+                {
                     return 1;
+                }
             }
             return CallNextHookEx(hook, Code, wParam, ref lParam);
         }

@@ -42,20 +42,20 @@ namespace AutoDbdFlexerEx.View
             switch (viewModel.ViewSettings.StatusWindowPosition)
             {
                 case ScreenCorners.LeftBottom:
-                    this.Left = 0;
-                    this.Top = Screen.PrimaryScreen.Bounds.Bottom - this.ActualHeight;
+                    Left = 0;
+                    Top = Screen.PrimaryScreen.Bounds.Bottom - ActualHeight;
                     break;
                 case ScreenCorners.RightBottom:
-                    this.Left = Screen.PrimaryScreen.Bounds.Right - this.ActualWidth;
-                    this.Top = Screen.PrimaryScreen.Bounds.Bottom - this.ActualHeight;
+                    Left = Screen.PrimaryScreen.Bounds.Right - ActualWidth;
+                    Top = Screen.PrimaryScreen.Bounds.Bottom - ActualHeight;
                     break;
                 case ScreenCorners.LeftTop:
-                    this.Left = 0;
-                    this.Top = 0;
+                    Left = 0;
+                    Top = 0;
                     break;
                 case ScreenCorners.RightTop:
-                    this.Left = Screen.PrimaryScreen.Bounds.Right - this.ActualWidth;
-                    this.Top = 0;
+                    Left = Screen.PrimaryScreen.Bounds.Right - ActualWidth;
+                    Top = 0;
                     break;
             }
         }

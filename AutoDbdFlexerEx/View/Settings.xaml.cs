@@ -12,7 +12,7 @@ namespace AutoDbdFlexerEx.View
 
             DataContext = viewModel;
 
-            foreach(var corner in Enum.GetValues(typeof(ScreenCorners)))
+            foreach (var corner in Enum.GetValues(typeof(ScreenCorners)))
             {
                 StatusWindowCornerSelector.Items.Add(corner);
             }

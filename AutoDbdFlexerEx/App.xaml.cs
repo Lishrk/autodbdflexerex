@@ -10,7 +10,7 @@ namespace AutoDbdFlexerEx
         {
             AppDomain.CurrentDomain.AssemblyResolve += (s1, e1) =>
             {
-                if(e1.Name.Substring(0, e1.Name.IndexOf(",")) == "Newtonsoft.Json")
+                if (e1.Name.Substring(0, e1.Name.IndexOf(",")) == "Newtonsoft.Json")
                 {
                     return Assembly.Load(AutoDbdFlexerEx.Properties.Resources.Newtonsoft_Json);
                 }
