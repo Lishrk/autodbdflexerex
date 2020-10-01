@@ -2,7 +2,6 @@
 using AutoDbdFlexerEx.Model.Actions;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
@@ -10,7 +9,7 @@ namespace AutoDbdFlexerEx.ViewModel
 {
     public class ApplicationViewModel
     {
-        public ViewSettings ViewSettings { get; }
+        public ViewSettings ViewSettings { get; private set; }
 
         public Wiggle Wiggle { get; private set; }
         public TBag TBag { get; private set; }
@@ -30,13 +29,12 @@ namespace AutoDbdFlexerEx.ViewModel
                 Wiggle = new Wiggle();
                 TBag = new TBag() { Cooldown = 100, Press = 100 };
                 HookResistance = new HookResistance();
+                ViewSettings = new ViewSettings();
             }
 
             AllActions = typeof(ApplicationViewModel).GetProperties()
                 .Where(p => p.PropertyType.BaseType == typeof(FlexAction))
                 .Select(p => (FlexAction)p.GetValue(this));
-
-            ViewSettings = ViewSettings.Load();
 
             keyboardHook = new KeyboardHook();
             keyboardHook.OnKeyDown += (s, e) =>
@@ -54,24 +52,25 @@ namespace AutoDbdFlexerEx.ViewModel
             App.Current.Exit += (s, e) =>
             {
                 Save();
-                ViewSettings.Save();
             };
         }
 
         private void Load()
         {
+            ViewSettings = Settings.Data.GetValue("view").ToObject<ViewSettings>() ?? new ViewSettings();
             var enumerator = typeof(ApplicationViewModel).GetProperties().Where(p => p.PropertyType.BaseType == typeof(FlexAction)).GetEnumerator();
-            foreach (var savedAction in JsonConvert.DeserializeObject<List<JObject>>(Properties.Settings.Default.Data))
+            foreach (var savedAction in Settings.Data.GetValue("actions"))
             {
                 if (!enumerator.MoveNext()) throw new Exception();
-                enumerator.Current.SetValue(this, JsonConvert.DeserializeObject(savedAction.ToString(), enumerator.Current.PropertyType));
+                enumerator.Current.SetValue(this, savedAction.ToObject(enumerator.Current.PropertyType));
             }
         }
 
         private void Save()
         {
-            Properties.Settings.Default.Data = JsonConvert.SerializeObject(AllActions);
-            Properties.Settings.Default.Save();
+            Settings.Data.AddOrReplace("actions", JToken.FromObject(AllActions));
+            Settings.Data.AddOrReplace("view", JToken.FromObject(ViewSettings));
+            Settings.Save();
         }
     }
 }

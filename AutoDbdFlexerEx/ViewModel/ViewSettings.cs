@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
 using System.Windows.Media;
 
 namespace AutoDbdFlexerEx.ViewModel
@@ -42,30 +41,10 @@ namespace AutoDbdFlexerEx.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        private ViewSettings()
+        public ViewSettings()
         {
             ShowStatusWindow = true;
             StatusWindowPosition = ScreenCorners.RightBottom;
-        }
-
-        public void Save()
-        {
-            Properties.Settings.Default.ViewSettings = JsonConvert.SerializeObject(this);
-            Properties.Settings.Default.Save();
-        }
-
-        public static ViewSettings Load()
-        {
-            ViewSettings settings;
-            try
-            {
-                settings = JsonConvert.DeserializeObject<ViewSettings>(Properties.Settings.Default.ViewSettings) ?? new ViewSettings();
-            }
-            catch
-            {
-                settings = new ViewSettings();
-            }
-            return settings;
         }
     }
 }
