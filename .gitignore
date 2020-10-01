@@ -4,6 +4,7 @@
 /AutoDbdFlexerEx/[B|b]in/Debug
 /AutoDbdFlexerEx/[B|b]in/[R|r]elease/AutoDbdFlexerEx.exe.config
 /AutoDbdFlexerEx/[B|b]in/[R|r]elease/AutoDbdFlexerEx.pdb
+/AutoDbdFlexerEx/[B|b]in/[R|r]elease/Newtonsoft.Json.xml
 /AutoDbdFlexerEx/.vs
 /packages
 *.user
