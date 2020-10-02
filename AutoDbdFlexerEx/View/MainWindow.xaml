@@ -21,7 +21,7 @@
             <Setter Property="Margin" Value="4, 0, 4, 4"/>
         </Style>
     </Window.Resources>
-    <ScrollViewer>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

@@ -6,43 +6,45 @@
         xmlns:local="clr-namespace:AutoDbdFlexerEx.View"
         xmlns:viewModel="clr-namespace:AutoDbdFlexerEx.ViewModel"
         mc:Ignorable="d"
-        MinHeight="100"
+        MinHeight="200"
         MinWidth="200"
         Title="Настройки" Height="450" Width="300">
     <Window.Resources>
         <viewModel:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
     </Window.Resources>
-    <Grid Margin="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <CheckBox IsChecked="{Binding ViewSettings.ShowStatusWindow}" Grid.ColumnSpan="2" Margin="10, 2.5" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0">
-            <TextBlock TextWrapping="Wrap" Style="{StaticResource StandardTextBlock}">
-                <TextBlock.Text>Показывать активные макросы в углу экрана</TextBlock.Text>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <CheckBox IsChecked="{Binding ViewSettings.ShowStatusWindow}" Grid.ColumnSpan="2" Margin="10, 2.5" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0">
+                <TextBlock TextWrapping="Wrap" Style="{StaticResource StandardTextBlock}">
+                    <TextBlock.Text>Показывать активные макросы в углу экрана</TextBlock.Text>
+                </TextBlock>
+            </CheckBox>
+            <ComboBox x:Name="StatusWindowCornerSelector" Grid.ColumnSpan="2" Margin="10, 2.5" Grid.Column="0" Grid.Row="1" SelectedItem="{Binding ViewSettings.StatusWindowPosition, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource EnumDescriptionConverter}}" Style="{StaticResource StandardTextBlock}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <local:ColorPicker SelectedColor="{Binding ViewSettings.StatusWindowTextColor, Mode=TwoWay}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="10, 2.5" Height="20" Width="20"/>
+            <TextBlock Style="{StaticResource StandardTextBlock}" Grid.Column="1" Grid.Row="2">
+                <TextBlock.Text>Текст шрифта окна активных макросов</TextBlock.Text>
             </TextBlock>
-        </CheckBox>
-        <ComboBox x:Name="StatusWindowCornerSelector" Grid.ColumnSpan="2" Margin="10, 2.5" Grid.Column="0" Grid.Row="1" SelectedItem="{Binding ViewSettings.StatusWindowPosition, Mode=TwoWay}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Converter={StaticResource EnumDescriptionConverter}}" Style="{StaticResource StandardTextBlock}"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <local:ColorPicker SelectedColor="{Binding ViewSettings.StatusWindowTextColor, Mode=TwoWay}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="10, 2.5" Height="20" Width="20"/>
-        <TextBlock Style="{StaticResource StandardTextBlock}" Grid.Column="1" Grid.Row="2">
-            <TextBlock.Text>Текст шрифта окна активных макросов</TextBlock.Text>
-        </TextBlock>
-        <TextBox Text="{Binding ViewSettings.StatusWindowTextFontSize, Mode=TwoWay}" Style="{StaticResource StandardTextBox}" Margin="10, 2.5" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
-        <TextBlock Style="{StaticResource StandardTextBlock}" Grid.Row="3" Grid.Column="1">
-            <TextBlock.Text>Размер шрифта окна активных макросов</TextBlock.Text>
-        </TextBlock>
-    </Grid>
+            <TextBox Text="{Binding ViewSettings.StatusWindowTextFontSize, Mode=TwoWay}" Style="{StaticResource StandardTextBox}" Margin="10, 2.5" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
+            <TextBlock Style="{StaticResource StandardTextBlock}" Grid.Row="3" Grid.Column="1">
+                <TextBlock.Text>Размер шрифта окна активных макросов</TextBlock.Text>
+            </TextBlock>
+        </Grid>
+    </ScrollViewer>
 </Window>
