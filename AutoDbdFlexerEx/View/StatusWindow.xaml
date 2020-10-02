@@ -30,7 +30,10 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <TextBlock FontSize="20" Foreground="LawnGreen" Margin="10, 5" FontWeight="Bold">
+                <TextBlock FontSize="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ViewSettings.StatusWindowTextFontSize}" Margin="10, 5" FontWeight="Bold">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.ViewSettings.StatusWindowTextColor}"/>
+                    </TextBlock.Foreground>
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} - {1}">
                             <Binding Path="Name"/>

@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:AutoDbdFlexerEx"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="StandardTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="Margin" Value="10, 2.5" />
+        </Style>
+        <Style x:Key="StandardTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="10, 2.5" />
+        </Style>
     </Application.Resources>
 </Application>

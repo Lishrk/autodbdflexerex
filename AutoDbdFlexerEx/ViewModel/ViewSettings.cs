@@ -9,6 +9,7 @@ namespace AutoDbdFlexerEx.ViewModel
         private bool _ShowStatusWindow;
         private ScreenCorners _StatusWindowPosition;
         private Color _StatusWindowTextColor;
+        private int _StatusWindowTextFontSize;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public bool ShowStatusWindow
@@ -35,6 +36,31 @@ namespace AutoDbdFlexerEx.ViewModel
                 OnPropertyChanged();
             }
         }
+        public Color StatusWindowTextColor
+        {
+            get
+            {
+                return _StatusWindowTextColor;
+            }
+            set
+            {
+                _StatusWindowTextColor = value;
+                _StatusWindowTextColor.A = byte.MaxValue;
+                OnPropertyChanged();
+            }
+        }
+        public int StatusWindowTextFontSize
+        {
+            get
+            {
+                return _StatusWindowTextFontSize;
+            }
+            set
+            {
+                _StatusWindowTextFontSize = value;
+                OnPropertyChanged();
+            }
+        }
 
         private void OnPropertyChanged([CallerMemberName] string property = "")
         {
@@ -45,6 +71,8 @@ namespace AutoDbdFlexerEx.ViewModel
         {
             ShowStatusWindow = true;
             StatusWindowPosition = ScreenCorners.RightBottom;
+            StatusWindowTextColor = Colors.Lime;
+            StatusWindowTextFontSize = 20;
         }
     }
 }
