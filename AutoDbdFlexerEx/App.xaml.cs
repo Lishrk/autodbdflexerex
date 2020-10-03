@@ -4,6 +4,5 @@ namespace AutoDbdFlexerEx
 {
     public partial class App : Application
     {
-
     }
 }

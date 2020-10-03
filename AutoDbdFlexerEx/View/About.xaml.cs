@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 
 namespace AutoDbdFlexerEx.View
@@ -8,6 +10,10 @@ namespace AutoDbdFlexerEx.View
         private About()
         {
             InitializeComponent();
+
+            Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            Header.Text = $"AutoDbdFlexerEx v{version}";
+            Header.ToolTip = (DateTime.Now - new DateTime(2000, 1, 1).AddDays(version.Build).AddSeconds(version.Revision * 2)).Days + " дней назад";
         }
 
         public static void ShowAbout()

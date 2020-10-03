@@ -1,6 +1,7 @@
 ﻿using AutoDbdFlexerEx.ViewModel;
 using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace AutoDbdFlexerEx.View
 {
@@ -16,22 +17,23 @@ namespace AutoDbdFlexerEx.View
 
             new StatusWindow(viewModel).Show();
         }
-
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
             App.Current.Shutdown();
         }
-
         private void ShowAbout(object sender, RoutedEventArgs e)
         {
             About.ShowAbout();
         }
-
         private void OpenSettings(object sender, RoutedEventArgs e)
         {
             Settings settings = new Settings(viewModel);
             settings.ShowDialog();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ((ICommand)viewModel.Update).Execute(null);
         }
     }
 }

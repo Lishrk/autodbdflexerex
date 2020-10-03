@@ -16,9 +16,9 @@
             <RowDefinition/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="16" Grid.Column="0" Grid.Row="0" TextAlignment="Center">
+        <TextBlock x:Name="Header" FontSize="16" Grid.Column="0" Grid.Row="0" TextAlignment="Center">
             <TextBlock.Text>
-                AutoDbdFlexerEx
+                AutoDbdFlexerEx *.*.*.* (version)
             </TextBlock.Text>
         </TextBlock>
         <TextBlock FontSize="14" Grid.Column="0" Grid.Row="1" TextWrapping="Wrap">

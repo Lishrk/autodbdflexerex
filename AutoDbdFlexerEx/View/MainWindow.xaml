@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Icon="/AutoDbdFlexerEx;component/Icon.ico"
         MinHeight="250" MinWidth="250"
+        Loaded="Window_Loaded"
         Title="AutoDbdFlexerEx" Height="450" Width="320">
     <Window.Resources>
         <Style TargetType="TextBlock">

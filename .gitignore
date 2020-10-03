@@ -6,5 +6,7 @@
 /AutoDbdFlexerEx/[B|b]in/[R|r]elease/AutoDbdFlexerEx.pdb
 /AutoDbdFlexerEx/[B|b]in/[R|r]elease/Newtonsoft.Json.xml
 /AutoDbdFlexerEx/.vs
+/Updater/[O|o]bj
+/Updater/[B|b]in
 /packages
 *.user

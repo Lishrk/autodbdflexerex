@@ -4,6 +4,8 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Windows;
 
 namespace AutoDbdFlexerEx.ViewModel
 {
@@ -14,6 +16,7 @@ namespace AutoDbdFlexerEx.ViewModel
         public Wiggle Wiggle { get; private set; }
         public TBag TBag { get; private set; }
         public HookResistance HookResistance { get; private set; }
+        public Command Update { get; }
 
         public IEnumerable<FlexAction> AllActions { get; }
         private readonly KeyboardHook keyboardHook;
@@ -53,8 +56,9 @@ namespace AutoDbdFlexerEx.ViewModel
             {
                 Save();
             };
-        }
 
+            Update = new Command() { Execute = (parameter) => _Update(), CanExecute = true };
+        }
         private void Load()
         {
             ViewSettings = Settings.Data.GetValue("view").ToObject<ViewSettings>() ?? new ViewSettings();
@@ -69,12 +73,31 @@ namespace AutoDbdFlexerEx.ViewModel
                 enumerator.Current.SetValue(this, savedAction.ToObject(enumerator.Current.PropertyType));
             }
         }
-
         private void Save()
         {
             Settings.Data.AddOrReplace("actions", JToken.FromObject(AllActions));
             Settings.Data.AddOrReplace("view", JToken.FromObject(ViewSettings));
             Settings.Save();
+        }
+        private void _Update()
+        {
+            new Thread(() =>
+            {
+                var result = Model.Updater.UpdateChecker.CheckForUpdates();
+                if (result.Success)
+                {
+                    if (result.CanUpdate)
+                    {
+                        Model.Updater.Updater.Update(result);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось проверить наличие обновлений.\nВозможно у вас нет доступа к интернету, или вы запретили программе доступ к нему через брандмауэр (файрвол).", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            })
+            { Priority = ThreadPriority.BelowNormal }.Start();
+            Update.CanExecute = false;
         }
     }
 }
