@@ -26,12 +26,13 @@ namespace AutoDbdFlexerEx.View
         {
             InitializeComponent();
 
-            KeyDown += (s, e) =>
+            PreviewKeyDown += (s, e) =>
             {
                 if (waitForInput)
                 {
                     SelectedKey = (Keys)KeyInterop.VirtualKeyFromKey(e.Key);
                     waitForInput = false;
+                    e.Handled = true;
                 }
             };
         }
