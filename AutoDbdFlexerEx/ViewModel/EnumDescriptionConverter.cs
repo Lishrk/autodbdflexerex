@@ -8,30 +8,22 @@ namespace AutoDbdFlexerEx.ViewModel
 {
     public class EnumDescriptionConverter : IValueConverter
     {
-        private string GetEnumDescription(Enum enumObj)
+        private static string GetEnumDescription(Enum value)
         {
-            FieldInfo fieldInfo = enumObj.GetType().GetField(enumObj.ToString());
-
-            object[] attribArray = fieldInfo.GetCustomAttributes(false);
-
-            if (attribArray.Length == 0)
+            try
             {
-                return enumObj.ToString();
+                return value.GetType().GetField(value.ToString()).
+                    GetCustomAttribute<DescriptionAttribute>().Description;
             }
-            else
+            catch
             {
-                DescriptionAttribute attrib = attribArray[0] as DescriptionAttribute;
-                return attrib.Description;
+                throw new ArgumentException($"{value.ToString()} of {value.GetType()} doesn't have DescriptionAttribute.");
             }
         }
-
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Enum myEnum = (Enum)value;
-            string description = GetEnumDescription(myEnum);
-            return description;
+            return GetEnumDescription((Enum)value);
         }
-
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return string.Empty;
