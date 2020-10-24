@@ -90,6 +90,10 @@
     <Compile Include="Model\Actions\TBag.cs" />
     <Compile Include="Model\JObjectExtensions.cs" />
     <Compile Include="Model\Settings.cs" />
+    <Compile Include="Model\Updater\ChangeLogReceiver.cs" />
+    <Compile Include="Model\Updater\ChangeLogReceiverResult.cs" />
+    <Compile Include="Model\Updater\FileDownloader.cs" />
+    <Compile Include="Model\Updater\FileDownloaderResult.cs" />
     <Compile Include="Model\Updater\UpdateChecker.cs" />
     <Compile Include="Model\Updater\UpdateCheckerResult.cs" />
     <Compile Include="Model\Updater\Updater.cs" />

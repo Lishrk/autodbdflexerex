@@ -1,7 +1,6 @@
 ﻿using AutoDbdFlexerEx.ViewModel;
 using System;
 using System.Windows;
-using System.Windows.Input;
 
 namespace AutoDbdFlexerEx.View
 {
@@ -30,10 +29,6 @@ namespace AutoDbdFlexerEx.View
         {
             SettingsWindow settings = new SettingsWindow(viewModel);
             settings.ShowDialog();
-        }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            ((ICommand)viewModel.Update).Execute(null);
         }
     }
 }

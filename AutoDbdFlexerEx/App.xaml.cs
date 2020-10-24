@@ -1,4 +1,5 @@
 ﻿using AutoDbdFlexerEx.Model;
+using AutoDbdFlexerEx.Model.Updater;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -9,11 +10,12 @@ namespace AutoDbdFlexerEx
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            // Если программа уже запущена, не нужно открывать ещё одну
             Process currentProcess = Process.GetCurrentProcess();
             Process[] processes = Process.GetProcessesByName(currentProcess.ProcessName);
             if (processes.Length > 1)
             {
-                foreach(var process in processes)
+                foreach (var process in processes)
                 {
                     if (process.Id != currentProcess.Id)
                     {
@@ -22,6 +24,8 @@ namespace AutoDbdFlexerEx
                 }
                 Environment.Exit(0);
             }
+
+            Updater.TryUpdateAsync();
         }
     }
 }

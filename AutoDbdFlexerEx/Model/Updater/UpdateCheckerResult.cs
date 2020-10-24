@@ -3,19 +3,12 @@ using System.Reflection;
 
 namespace AutoDbdFlexerEx.Model.Updater
 {
-    public class UpdateCheckerResult
+    class UpdateCheckerResult
     {
-        private readonly bool _Success;
         private Version _NewVersion;
         private string _UpdatedFilePath;
 
-        public bool Success
-        {
-            get
-            {
-                return _Success;
-            }
-        }
+        public bool Success { get; }
         public bool CanUpdate
         {
             get
@@ -51,7 +44,7 @@ namespace AutoDbdFlexerEx.Model.Updater
 
         public UpdateCheckerResult(Version newVersion, string updatedFilePath)
         {
-            _Success = true;
+            Success = true;
             _UpdatedFilePath = updatedFilePath;
             _NewVersion = newVersion;
         }
@@ -60,7 +53,7 @@ namespace AutoDbdFlexerEx.Model.Updater
         /// </summary>
         public UpdateCheckerResult()
         {
-            _Success = false;
+            Success = false;
         }
     }
 }
