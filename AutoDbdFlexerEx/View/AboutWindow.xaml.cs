@@ -5,9 +5,9 @@ using System.Windows;
 
 namespace AutoDbdFlexerEx.View
 {
-    public partial class About : Window
+    public partial class AboutWindow : Window
     {
-        private About()
+        private AboutWindow()
         {
             InitializeComponent();
 
@@ -18,7 +18,7 @@ namespace AutoDbdFlexerEx.View
 
         public static void ShowAbout()
         {
-            About about = new About();
+            AboutWindow about = new AboutWindow();
             about.ShowDialog();
         }
 

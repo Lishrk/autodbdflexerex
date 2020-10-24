@@ -4,9 +4,9 @@ using System.Windows;
 
 namespace AutoDbdFlexerEx.View
 {
-    public partial class Settings : Window
+    public partial class SettingsWindow : Window
     {
-        public Settings(ApplicationViewModel viewModel)
+        public SettingsWindow(ApplicationViewModel viewModel)
         {
             InitializeComponent();
 

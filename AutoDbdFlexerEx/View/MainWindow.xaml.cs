@@ -24,11 +24,11 @@ namespace AutoDbdFlexerEx.View
         }
         private void ShowAbout(object sender, RoutedEventArgs e)
         {
-            About.ShowAbout();
+            AboutWindow.ShowAbout();
         }
         private void OpenSettings(object sender, RoutedEventArgs e)
         {
-            Settings settings = new Settings(viewModel);
+            SettingsWindow settings = new SettingsWindow(viewModel);
             settings.ShowDialog();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
