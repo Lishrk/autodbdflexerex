@@ -2,17 +2,12 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace AutoDbdFlexerEx.Model.Updater
 {
     public static class Updater
     {
-        public static async Task TryUpdateAsync()
-        {
-            await Task.Run(TryUpdate);
-        }
         public static void TryUpdate()
         {
             if(Settings.Data["FirstLaunch"] == null)
