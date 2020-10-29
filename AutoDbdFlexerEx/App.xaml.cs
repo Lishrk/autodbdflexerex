@@ -11,6 +11,9 @@ namespace AutoDbdFlexerEx
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            // Увеличение скорости запуска приложения
+            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.AboveNormal;
+
             // Если программа уже запущена, не нужно открывать ещё одну
             Process currentProcess = Process.GetCurrentProcess();
             Process[] processes = Process.GetProcessesByName(currentProcess.ProcessName);
