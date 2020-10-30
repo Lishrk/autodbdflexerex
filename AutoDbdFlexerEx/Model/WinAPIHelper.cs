@@ -16,8 +16,8 @@ namespace AutoDbdFlexerEx.Model
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
-
 #if DEBUG
+#warning WinAPIHelper.PressKey is disabled in Debug mode
         public static async Task PressKey(Keys key, int time)
         {
             await Task.Delay(time);
