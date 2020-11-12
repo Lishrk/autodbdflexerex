@@ -9,7 +9,7 @@
 Эта программа будет удобнее, чем горы макросов, которые долго нужно настраивать.  
 К тому же, вы всегда можете видеть включённые макросы в правом нижнем углу экрана, так что вы никогда не забудете кнопку выключения макроса.
 ## Где скачать последнюю версию?
-Вы можете найти исполняемый файл под Windows по [ссылке](https://github.com/TheWonderfulCookie/autodbdflexerex/raw/master/AutoDbdFlexerEx/bin/Release/AutoDbdFlexerEx.exe).
+Вы можете найти исполняемый файл под Windows по [ссылке](https://github.com/TrickyBestia/autodbdflexerex/raw/master/AutoDbdFlexerEx/bin/Release/AutoDbdFlexerEx.exe).
 ## Банят ли за это?
 Нет.  
 Никакие приложения (включая античит) не могут узнать, кто нажал на клавишу - макрос или пользователь.
