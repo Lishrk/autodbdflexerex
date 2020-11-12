@@ -5,7 +5,7 @@ namespace AutoDbdFlexerEx.Model.Updater
 {
     static class ChangeLogReceiver
     {
-        public const string GITHUB_CHANGELOG_URL = "http://github.com/TheWonderfulCookie/autodbdflexerex/raw/master/Changelog.txt";
+        public const string GITHUB_CHANGELOG_URL = "http://github.com/TrickyBestia/autodbdflexerex/raw/master/Changelog.txt";
 
         public static async Task<ChangeLogReceiverResult> GetChangeLogAsync()
         {

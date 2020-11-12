@@ -7,7 +7,7 @@ namespace AutoDbdFlexerEx.Model.Updater
 {
     static class UpdateChecker
     {
-        public const string GITHUB_EXECUTABLE_URL = "http://github.com/TheWonderfulCookie/autodbdflexerex/raw/master/AutoDbdFlexerEx/bin/Release/AutoDbdFlexerEx.exe";
+        public const string GITHUB_EXECUTABLE_URL = "http://github.com/TrickyBestia/autodbdflexerex/raw/master/AutoDbdFlexerEx/bin/Release/AutoDbdFlexerEx.exe";
 
         public static async Task<UpdateCheckerResult> CheckForUpdatesAsync()
         {
