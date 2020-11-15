@@ -28,11 +28,11 @@
         </TextBlock>
         <TextBlock FontSize="14" Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom">
             <TextBlock.Text>
-                Copyright © 2020 TheWonderfulCookie
+                Copyright © 2020 TrickyBestia
             </TextBlock.Text>
         </TextBlock>
         <TextBlock FontSize="14" Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Hyperlink NavigateUri="https://github.com/TheWonderfulCookie/autodbdflexerex" RequestNavigate="Hyperlink_RequestNavigate">
+            <Hyperlink NavigateUri="https://github.com/TrickyBestia/autodbdflexerex" RequestNavigate="Hyperlink_RequestNavigate">
                 Github
             </Hyperlink>
         </TextBlock>
