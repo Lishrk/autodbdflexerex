@@ -1,8 +1,6 @@
 ﻿using AutoDbdFlexerEx.Model;
-using AutoDbdFlexerEx.Model.Updater;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace AutoDbdFlexerEx
@@ -28,8 +26,6 @@ namespace AutoDbdFlexerEx
                 }
                 Environment.Exit(0);
             }
-
-            Task.Run(Updater.TryUpdate);
         }
     }
 }
