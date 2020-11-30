@@ -21,10 +21,6 @@ namespace AutoDbdFlexerEx.Model.Updater
             {
                 if(updateCheckerResult.CanUpdate)
                 {
-                    ChangeLogReceiverResult changeLogReceiverResult = ChangeLogReceiver.GetChangeLog();
-                    if (changeLogReceiverResult.Success)
-                        Process.Start(changeLogReceiverResult.ChangeLogFilePath);
-
                     string updaterPath = Path.Combine(Path.GetTempPath(), "AutoDbdFlexerExUpdater.exe");
                     string updaterResourceName = Assembly.GetExecutingAssembly().GetManifestResourceNames().Single(str => str.EndsWith("Updater.exe"));
                     using (var updaterResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(updaterResourceName))
