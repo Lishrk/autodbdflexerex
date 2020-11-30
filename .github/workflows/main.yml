@@ -4,29 +4,29 @@ on:
   push:
   pull_request:
 
-  jobs:
-    Build:
-      runs-on: windows-latest
+jobs:
+  Build:
+    runs-on: windows-latest
 
-    steps:
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.7.2
+  steps:
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1.7.2
 
-      - name: Pull repository
-        uses: actions/checkout@v2.3.1
+    - name: Pull repository
+      uses: actions/checkout@v2.3.1
 
-      - name: Build
-        run: |
-          dotnet publish AutoDbdFlexerEx -c release --framework=net45 -o build
-          if ($? -eq $false) { Exit 1 }
+    - name: Build
+      run: |
+        dotnet publish AutoDbdFlexerEx -c release --framework=net45 -o build
+        if ($? -eq $false) { Exit 1 }
 
-      - name: Delete build trash
-        run: |
-         rm build/AutoDbdFlexerEx.pdb
-         rm Newtonsoft.Json.xml
+    - name: Delete build trash
+      run: |
+        rm build/AutoDbdFlexerEx.pdb
+        rm Newtonsoft.Json.xml
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: AutoDbdFlexerEx
-          path: build
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: AutoDbdFlexerEx
+        path: build
