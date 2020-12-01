@@ -10,9 +10,9 @@ namespace AutoDbdFlexerEx.View
 
         public MainWindow()
         {
-            InitializeComponent();
-
             DataContext = viewModel = new ApplicationViewModel();
+
+            InitializeComponent();
 
             new StatusWindow(viewModel).Show();
         }
