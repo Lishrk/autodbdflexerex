@@ -17,7 +17,7 @@ jobs:
 
       - name: Build
         run: |
-          msbuild publish AutoDbdFlexerEx -p:Configuration=Release -p:OutDir=build
+          msbuild AutoDbdFlexerEx -p:Configuration=Release -p:OutDir=build
           if ($? -eq $false) { Exit 1 }
 
       - name: Delete build trash
