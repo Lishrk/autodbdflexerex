@@ -9,18 +9,15 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.7.2
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.0.2
 
       - name: Pull repository
         uses: actions/checkout@v2.3.1
 
-      - name: Restore NuGet packages
-        run: dotnet restore AutoDbdFlexerEx
-
       - name: Build
         run: |
-          dotnet publish AutoDbdFlexerEx -c release --framework=net45 -o build
+          msbuild publish AutoDbdFlexerEx -p:Configuration=Release -p:OutDir=build
           if ($? -eq $false) { Exit 1 }
 
       - name: Delete build trash
