@@ -3,17 +3,17 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AutoDbdFlexerEx.Model
 {
-    public abstract class FlexAction : INotifyPropertyChanged
+    public abstract class FlexAction<TConfig> : INotifyPropertyChanged, IFlexAction where TConfig : ActionConfig, new()
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private Task actionTask;
         private CancellationTokenSource cancellationTokenSource;
-        private Keys _Activator;
         private bool _Active;
+        private TConfig _config;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [JsonIgnore]
         public bool Active
         {
@@ -27,32 +27,42 @@ namespace AutoDbdFlexerEx.Model
                 OnPropertyChanged();
             }
         }
-        public Keys Activator
+        [JsonProperty]
+        public TConfig Config
         {
             get
             {
-                return _Activator;
+                return _config;
             }
             set
             {
-                _Activator = value;
-                OnPropertyChanged("Activator");
+                _config = value;
+                OnPropertyChanged();
             }
         }
-        [JsonIgnore]
-        public abstract string Name { get; }
-
-        private protected abstract Task DoAction(CancellationToken cancellationToken);
-        private protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        ActionConfig IFlexAction.Config
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get
+            {
+                return Config;
+            }
+            set
+            {
+                Config = (TConfig)value;
+            }
         }
+
+        public FlexAction()
+        {
+            Config = new TConfig();
+        }
+
         public void Start()
         {
             if (!Active)
             {
                 cancellationTokenSource = new CancellationTokenSource();
-                actionTask = DoAction(cancellationTokenSource.Token);
+                DoAction(cancellationTokenSource.Token);
                 Active = true;
             }
         }
@@ -75,5 +85,7 @@ namespace AutoDbdFlexerEx.Model
                 Stop();
             }
         }
+        protected abstract Task DoAction(CancellationToken cancellationToken);
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
