@@ -86,8 +86,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Actions\Configs\HookResistanceConfig.cs" />
+    <Compile Include="Model\Actions\Configs\TBagConfig.cs" />
+    <Compile Include="Model\Actions\Configs\WiggleConfig.cs" />
+    <Compile Include="Model\ActionConfig.cs" />
     <Compile Include="Model\Actions\HookResistance.cs" />
     <Compile Include="Model\Actions\TBag.cs" />
+    <Compile Include="Model\IFlexAction.cs" />
     <Compile Include="Model\JObjectExtensions.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="ViewModel\Command.cs" />
@@ -100,6 +105,9 @@
     <Compile Include="View\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FlexActionConfigEditor.xaml.cs">
+      <DependentUpon>FlexActionConfigEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -111,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FlexActionConfigEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,6 +181,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

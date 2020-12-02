@@ -22,7 +22,7 @@
         </Style>
     </Window.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <Grid >
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -34,46 +34,13 @@
                 <MenuItem Header="Настройки..." Click="OpenSettings"/>
                 <MenuItem Header="О программе..." Click="ShowAbout"/>
             </Menu>
-            <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
-                <Border x:Name="Border" SnapsToDevicePixels="True" BorderBrush="Black" BorderThickness="1" Margin="0, 0, 0, 10">
-                    <StackPanel>
-                        <TextBlock Text="{Binding Path=Wiggle.Name}"/>
-                        <Line X1="0" X2="{Binding ElementName=Border, Path=ActualWidth}" Y1="1" Y2="1" StrokeThickness="0.5" Stroke="Black" SnapsToDevicePixels="True" Margin="0, 1"/>
-                        <local:KeySelector SelectedKey="{Binding Path=Wiggle.Activator, Mode=TwoWay}" Margin="4" Height="30"/>
-                    </StackPanel>
-                </Border>
-                <Border SnapsToDevicePixels="True" BorderBrush="Black" BorderThickness="1" Margin="0, 0, 0, 10">
-                    <StackPanel>
-                        <TextBlock Text="{Binding TBag.Name}"/>
-                        <Line X1="0" X2="{Binding ElementName=Border, Path=ActualWidth}" Y1="1" Y2="1" StrokeThickness="0.5" Stroke="Black" SnapsToDevicePixels="True" Margin="0, 1"/>
-                        <TextBlock Text="Время нажатия клавиши"/>
-                        <TextBox Text="{Binding TBag.Press}"/>
-                        <TextBlock Text="Время между нажатиями"/>
-                        <TextBox Text="{Binding TBag.Cooldown}"/>
-                        <local:KeySelector SelectedKey="{Binding Path=TBag.Activator, Mode=TwoWay}" Margin="4, 0, 4, 4" Height="30"/>
-                    </StackPanel>
-                </Border>
-                <Border SnapsToDevicePixels="True" BorderBrush="Black" BorderThickness="1" Margin="0, 0, 0, 10">
-                    <StackPanel>
-                        <TextBlock Text="{Binding HookResistance.Name}"/>
-                        <Line X1="0" X2="{Binding ElementName=Border, Path=ActualWidth}" Y1="1" Y2="1" StrokeThickness="0.5" Stroke="Black" SnapsToDevicePixels="True" Margin="0, 1"/>
-                        <local:KeySelector SelectedKey="{Binding Path= HookResistance.Activator, Mode=TwoWay}" Margin="4" Height="30"/>
-                    </StackPanel>
-                </Border>
-                <!--ActionPrefab
-            <Border SnapsToDevicePixels="True" BorderBrush="Black" BorderThickness="1" Margin="0, 0, 0, 10">
-                <StackPanel>
-                    <TextBlock Text="{Binding .Name}"/>
-                    <Line X1="0" X2="{Binding ElementName=Border, Path=ActualWidth}" Y1="0" Y2="0" StrokeThickness="1" Stroke="Black" SnapsToDevicePixels="True"/>
-                    <TextBlock Text="Время нажатия клавиши"/>
-                    <TextBox Text="{Binding .Press}"/>
-                    <TextBlock Text="Время между нажатиями"/>
-                    <TextBox Text="{Binding .Cooldown}"/>
-                    <local:KeySelector SelectedKey="{Binding Path= .Activator, Mode=TwoWay}" Margin="4, 0, 4, 4" Height="30"/>
-                </StackPanel>
-            </Border>
-            -->
-            </StackPanel>
+            <ItemsControl ItemsSource="{Binding Configs}" Grid.Column="0" Grid.Row="1" Margin="10">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:FlexActionConfigEditor ActionConfig="{Binding}" Margin="0, 0, 0, 10"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Grid>
     </ScrollViewer>
 </Window>

@@ -16,13 +16,13 @@
         ShowInTaskbar="False"
         IsHitTestVisible="False"
         Title="Активные макросы" Height="100" Width="400">
-    <Window.Resources >
-        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Window.Resources>
     <Window.Visibility>
         <Binding Path="ViewSettings.ShowStatusWindow" Mode="TwoWay" Converter="{StaticResource BoolToVisibilityConverter}"/>
     </Window.Visibility>
-    <ItemsControl Background="Transparent" ItemsSource="{Binding Path=AllActions}" BorderThickness="0" Margin="10">
+    <ItemsControl Background="Transparent" ItemsSource="{Binding Path=Actions}" BorderThickness="0" Margin="10">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <VirtualizingStackPanel VerticalAlignment="Bottom"/>
@@ -36,8 +36,8 @@
                     </TextBlock.Foreground>
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} - {1}">
-                            <Binding Path="Name"/>
-                            <Binding Path="Activator"/>
+                            <Binding Path="Config.Name"/>
+                            <Binding Path="Config.Activator"/>
                         </MultiBinding>
                     </TextBlock.Text>
                     <TextBlock.Style>

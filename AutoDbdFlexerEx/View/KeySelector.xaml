@@ -6,5 +6,5 @@
              xmlns:local="clr-namespace:AutoDbdFlexerEx.View"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="400">
-    <Button x:Name="StatusButton" Content="..." Click="SelectKey" FontSize="16"/>
+    <Button x:Name="StatusButton" Content="..." Click="SelectKey"/>
 </UserControl>

@@ -24,9 +24,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <CheckBox IsChecked="{Binding ViewSettings.ShowStatusWindow}" Grid.ColumnSpan="2" Margin="10, 2.5" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0">
@@ -52,26 +49,6 @@
             <TextBlock Style="{StaticResource StandardTextBlock}" Grid.Row="3" Grid.Column="1">
                 <TextBlock.Text>Размер шрифта окна активных макросов</TextBlock.Text>
             </TextBlock>
-
-            <TextBlock Style="{StaticResource StandardTextBlock}" Grid.Row="4" Grid.Column="1">
-                <TextBlock.Text>Клавиша сопротивления на крюке в игре</TextBlock.Text>
-            </TextBlock>
-            <local:KeySelector SelectedKey="{Binding HookResistance.KeyToPress, Mode=TwoWay}" Grid.Row="4" Grid.Column="0" Margin="0, 5"/>
-            
-            <TextBlock Style="{StaticResource StandardTextBlock}" Grid.Row="5" Grid.Column="1">
-                <TextBlock.Text>Клавиша приседания в игре</TextBlock.Text>
-            </TextBlock>
-            <local:KeySelector SelectedKey="{Binding TBag.KeyToPress, Mode=TwoWay}" Grid.Row="5" Grid.Column="0" Margin="0, 5"/>
-            
-            <TextBlock Style="{StaticResource StandardTextBlock}" Grid.Row="6" Grid.Column="1">
-                <TextBlock.Text>Клавиша вигглинга вправо в игре</TextBlock.Text>
-            </TextBlock>
-            <local:KeySelector SelectedKey="{Binding Wiggle.WiggleRight, Mode=TwoWay}" Grid.Row="6" Grid.Column="0" Margin="0, 5"/>
-
-            <TextBlock Style="{StaticResource StandardTextBlock}" Grid.Row="7" Grid.Column="1">
-                <TextBlock.Text>Клавиша вигглинга влево в игре</TextBlock.Text>
-            </TextBlock>
-            <local:KeySelector SelectedKey="{Binding Wiggle.WiggleLeft, Mode=TwoWay}" Grid.Row="7" Grid.Column="0" Margin="0, 5"/>
         </Grid>
     </ScrollViewer>
 </Window>
